@@ -6,6 +6,22 @@
     <title>kai</title>
     <link rel="stylesheet" href="styles/style.css">
     <link rel="icon" href="img/titll_logo.png">
+    <link rel="preload" as="image" href="img/popupWindow.JPG">
+<style>
+    .loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #333;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.8s linear infinite;
+    margin: auto;
+    }
+    @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+    }
+</style>
 </head>
 <body>
 <div class="container">
@@ -47,7 +63,7 @@
             </div>
         </header>
 <!-- -------------- Section About -------------- -->
-        <section id="about">
+        <section id="about" class="hidden-on-scroll">
             <h2 class="langRu" >О себе</h2>
             <h2 class="langEn" >About Me</h2>
             <h2 class="langTm" >Özüm barada</h2>
@@ -121,7 +137,7 @@
             </div>
         </section>
 <!-- -------------- Section Skills -------------- -->
-        <section id="skills">
+        <section id="skills" class="hidden-on-scroll">
             <h2 class="langRu">Навыки</h2>
             <h2 class="langEn">Skills</h2>
             <h2 class="langTm">Başarnyklar</h2>
@@ -155,7 +171,7 @@
             
         </section>
 <!-- -------------- Section Projects -------------- -->
-        <section id="projects">
+        <section id="projects" class="hidden-on-scroll">
             <h2 class="langRu">Проекты</h2>
             <h2 class="langEn">Projects</h2>
             <h2 class="langTm">Taslamalar</h2>
@@ -216,9 +232,12 @@
         <div class="popup_body">
             <div class="popup_content popup_content_image">
                 <a href="#header" class="popup_close close-popup">❌</a>
-                <div class="popup_image">
-                    <img src="img/popupWindow.JPG" alt="">
-                </div>
+                
+<div class="popup_image">
+  <div class="loader"></div>
+  <img src="img/popupWindow.JPG" onload="this.previousElementSibling.style.display='none'" alt="">
+</div>
+
             </div>
         </div>
     </div>
@@ -226,5 +245,11 @@
     </div>
 </div>
     <script src="scripts/script.js"></script>
+
+<script>
+  const preloadImg = new Image();
+  preloadImg.src = "img/popupWindow.JPG";
+</script>
+
 </body>
 </html>
