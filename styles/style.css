@@ -4,13 +4,10 @@ body {
     padding: 0;
     transition: background 0.3s ease, color 0.3s ease;
 }
-
 body.scroll-lock{
     overflow: hidden;
 }
-
 /* ---------- Header ---------- */
-
 .header {
     text-align: center;
     padding: 15px;
@@ -29,13 +26,11 @@ body.scroll-lock{
     border-radius: 50%;
     border: 2px solid #2d7dd2;
 }
-
 .header_block_langs{
     position: absolute;
     bottom: 0;
     right: 10%;
 }
-
 .language-switcher {
     position: relative;
     display: inline-block;
@@ -56,7 +51,6 @@ body.scroll-lock{
     background: #f45d01;
     border: none;
 }
-
 .dropdown-content {
     display: none;
     position: absolute;
@@ -65,19 +59,16 @@ body.scroll-lock{
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    z-index: 5;
 }
-
 .dropdown-content .change_lang_btn {
     padding: 12px;
     cursor: pointer;
 }
-
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
 /* ---------- Header ---------- */
-
 .change_lang_btn{
     margin-bottom: 3px;
 }
@@ -91,9 +82,7 @@ h1, h2 {
     width: 40px;
     height: 40px;
 }
-
 /* ---------- PopupWindow ---------- */
-
 body.lock{
     overflow: hidden;
 }
@@ -110,7 +99,6 @@ body.lock{
     overflow-x: hidden;
     transition: all 0.8s ease 0s;
 }
-
 .popup.open {
     opacity: 1;
     visibility: visible;
@@ -119,7 +107,6 @@ body.lock{
     transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
     opacity: 1;
 }
-
 .popup_body {
     min-height: 85%;
     display: flex;
@@ -154,11 +141,19 @@ body.lock{
     font-size: 25px;
     margin: 0 0 1em 0;
 }
-
 .img_code{
     height: 600px;
 }
-
+.hidden-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.6s ease-out;
+  }
+  
+  .hidden-on-scroll.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 /* ---------- Sections ---------- */
 section {
     padding: 20px;
@@ -170,20 +165,17 @@ section {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 /* ---------- scills ---------- */
-
 .skill {
     margin: 15px 0;
   }
   .skill {
     margin-bottom: 20px;
   }
-  
   .skill span {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
   }
-  
   .bar {
     width: 100%;
     height: 20px;
@@ -192,7 +184,6 @@ section {
     overflow: hidden;
     position: relative;
   }
-  
   .bar::after {
     content: '';
     display: block;
@@ -202,7 +193,6 @@ section {
     border-radius: 10px;
     transition: width 1.5s ease-in-out;
   }
-  
   .fill {
       background: #f45d01;
       height: 100%;
@@ -212,9 +202,7 @@ section {
       line-height: 25px;
       font-weight: bold;
     }
-
 /* ---------- projects ---------- */
-
 .project-card {
     background: white;
     border-radius: 10px;
@@ -388,5 +376,4 @@ input {
         width: 20px;
         height: 20px;
     }
-    
 }
