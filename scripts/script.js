@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Agşamyňyz haýyrly, men Eziz",
       ],
     };
-
     const greeting =
       hours < 6
         ? greetings[lang][0]
@@ -80,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
         : hours < 18
         ? greetings[lang][2]
         : greetings[lang][3];
-
     document.getElementById("greeting").innerText = greeting;
   }
 
@@ -127,9 +125,7 @@ window.addEventListener("load", () => {
     setTimeout(() => (fill.style.width = level + "%"), 100);
   });
 });
-
 /* ------------- Popup Window ------------- */
-
 const popupLinks = document.querySelectorAll(".popup-link");
 const body = document.querySelector("body");
 const lockPadding = document.querySelectorAll(".lock-padding");
@@ -155,7 +151,6 @@ if (popupLinks.length > 0) {
     });
   }
 }
-
 // close
 const popupCloseIcon = document.querySelectorAll(".close-popup");
 if (popupCloseIcon.length > 0) {
@@ -168,7 +163,6 @@ if (popupCloseIcon.length > 0) {
     });
   }
 }
-
 /*---------func OPEN------------*/
 function popupOpen(curentPopup) {
   /* проверяем есть ли такой объект и открыта ли перем. unlock 
@@ -199,9 +193,7 @@ function popupOpen(curentPopup) {
     });
   }
 }
-
 /*---------func CLOSE------------*/
-
 function popupClose(popupActive, doUnlock = true) {
   if (unlock) {
     popupActive.classList.remove("open");
@@ -210,5 +202,18 @@ function popupClose(popupActive, doUnlock = true) {
     }
   }
 }
+/*-------------- anim_scroll_on_sections -----------------*/
 
-/*--------------body Lock-----------------*/
+const hiddenElements = document.querySelectorAll(".hidden-on-scroll");
+
+function showOnScroll() {
+  hiddenElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      el.classList.add("show");
+    }
+  });
+}
+
+window.addEventListener("scroll", showOnScroll);
+window.addEventListener("load", showOnScroll); // на случай, если уже видно при загрузке
