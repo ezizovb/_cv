@@ -127,3 +127,88 @@ window.addEventListener("load", () => {
     setTimeout(() => (fill.style.width = level + "%"), 100);
   });
 });
+
+/* ------------- Popup Window ------------- */
+
+const popupLinks = document.querySelectorAll(".popup-link");
+const body = document.querySelector("body");
+const lockPadding = document.querySelectorAll(".lock-padding");
+
+let unlock = true;
+const timeout = 800;
+
+if (popupLinks.length > 0) {
+  //Делегируем событие для каждого popup элемента
+  for (let index = 0; index < popupLinks.length; index++) {
+    // получаем каждого элемента в переменную
+    const popupLink = popupLinks[index];
+    // навещаем события клик
+    popupLink.addEventListener("click", function (e) {
+      // берем атрибуть 'href' и убираем '#'
+      const popupName = popupLink.getAttribute("href").replace("#", "");
+      // и получаем его чистое имя
+      const curentPopup = document.getElementById(popupName);
+      // и отправляем его на функцию popupOpen (*внизу)
+      popupOpen(curentPopup);
+      // запрешаем переход по ссылке
+      e.preventDefault();
+    });
+  }
+}
+
+// close
+const popupCloseIcon = document.querySelectorAll(".close-popup");
+if (popupCloseIcon.length > 0) {
+  for (let index = 0; index < popupCloseIcon.length; index++) {
+    const el = popupCloseIcon[index];
+    el.addEventListener("click", function (e) {
+      // отправляем на функцию 'popupClose' объект который его ближайщий родител с классом 'popup'
+      popupClose(el.closest(".popup"));
+      e.preventDefault();
+    });
+  }
+}
+
+/*---------func OPEN------------*/
+function popupOpen(curentPopup) {
+  /* проверяем есть ли такой объект и открыта ли перем. unlock 
+    в начале (сверху) он true */
+  if (curentPopup && unlock) {
+    /* получаем объект который popup с классом open 
+    это нужен нам чтоб, закрыть текущий окно, и через ссылку 
+    перейти на второй popup окно*/
+    const popupActive = document.querySelector(".popup.open");
+    if (popupActive) {
+      // и если есть такой то отправляем на функ. для закрытие
+      popupClose(popupActive, false);
+    } else {
+      // если нет то блочим скролл (фун. внизу)
+      document.body.classList.add("scroll-lock");
+    }
+    // и дальше тому (котором мы передали сюда) добавим сюда класс open
+    curentPopup.classList.add("open");
+
+    curentPopup.addEventListener("click", function (e) {
+      /* тут условия если у нажатого объекта у родителях нет 
+    класс popup_content*/
+      if (!e.target.closest(".popup_content")) {
+        /* то мы передаем его на на функ. для закрытие 
+        (если нажать на все что за переделы popup_content то он закроется)*/
+        popupClose(e.target.closest(".popup"));
+      }
+    });
+  }
+}
+
+/*---------func CLOSE------------*/
+
+function popupClose(popupActive, doUnlock = true) {
+  if (unlock) {
+    popupActive.classList.remove("open");
+    if (doUnlock) {
+      document.body.classList.remove("scroll-lock");
+    }
+  }
+}
+
+/*--------------body Lock-----------------*/
