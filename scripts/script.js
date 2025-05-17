@@ -103,7 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-window.addEventListener("load", () => {
+// window.addEventListener("load", () => {
+function animateSkills() {
   document.querySelectorAll(".bar").forEach((bar) => {
     const level = bar.dataset.level;
     bar.querySelector("::after"); // just triggers update
@@ -124,7 +125,8 @@ window.addEventListener("load", () => {
     bar.appendChild(fill);
     setTimeout(() => (fill.style.width = level + "%"), 100);
   });
-});
+}
+// });
 /* ------------- Popup Window ------------- */
 const popupLinks = document.querySelectorAll(".popup-link");
 const body = document.querySelector("body");
@@ -204,16 +206,39 @@ function popupClose(popupActive, doUnlock = true) {
 }
 /*-------------- anim_scroll_on_sections -----------------*/
 
-const hiddenElements = document.querySelectorAll(".hidden-on-scroll");
+// const hiddenElements = document.querySelectorAll(".hidden-on-scroll");
 
-function showOnScroll() {
-  hiddenElements.forEach((el) => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add("show");
-    }
-  });
-}
+// function showOnScroll() {
+//   hiddenElements.forEach((el) => {
+//     const rect = el.getBoundingClientRect();
+//     if (rect.top < window.innerHeight - 100) {
+//       el.classList.add("show");
+//       //   animateSkills();
+//     }
+//   });
+// }
 
-window.addEventListener("scroll", showOnScroll);
-window.addEventListener("load", showOnScroll); // на случай, если уже видно при загрузке
+// window.addEventListener("scroll", showOnScroll);
+// window.addEventListener("load", showOnScroll); // на случай, если уже видно при загрузке
+
+// ===============================================
+const sections = document.querySelectorAll(".hidden-on-scroll");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        // запуск анимации скиллов
+        if (entry.target.id === "skills") {
+          animateSkills();
+        }
+      }
+    });
+  },
+  { threshold: 0.4 }
+);
+
+sections.forEach((section) => {
+  observer.observe(section);
+});
