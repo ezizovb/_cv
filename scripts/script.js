@@ -118,7 +118,7 @@ function animateSkills() {
     fill.style.left = 0;
     fill.style.height = "100%";
     fill.style.width = "0%";
-    fill.style.background = "linear-gradient(90deg, #c75000, #621b00)";
+    fill.style.background = "linear-gradient(90deg, #4f772d, #31572c)";
     fill.style.borderRadius = "10px";
     fill.style.transition = "width 1.5s ease-in-out";
 
@@ -241,4 +241,13 @@ const observer = new IntersectionObserver(
 
 sections.forEach((section) => {
   observer.observe(section);
+});
+
+const img = document.getElementById("img1");
+if (localStorage.getItem("img1_visited")) {
+  img.classList.add("visited");
+}
+img.parentElement.addEventListener("click", () => {
+  img.classList.add("visited");
+  localStorage.setItem("img1_visited", "true");
 });
