@@ -8,6 +8,9 @@
     <link rel="icon" href="img/kai.svg">
     <link rel="preload" as="image" href="img/popupWindow.JPG">
 <style>
+    body{
+        visibility: hidden;
+    }
     .loader {
     border: 4px solid #f3f3f3;
     border-top: 4px solid #333;
@@ -22,6 +25,12 @@
     100% { transform: rotate(360deg); }
     }
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        document.body.style.visibility="visible"
+    })
+</script>
+<script src="scripts/script.js" defer></script>
 </head>
 <body>
 <div class="container">
@@ -32,7 +41,7 @@
             <div class="header_block_logo">
                 <!-- ----------- -->
                 <a href="#image" class="content_image popup-link">
-                    <img class="img_code popup-link" src="img/logo.jpg" alt="">
+                    <img id="img1" class="img_code popup-link" src="img/logo.png" alt="">
                 </a>
                 <!-- ----------- -->
             </div>
@@ -232,24 +241,27 @@
         <div class="popup_body">
             <div class="popup_content popup_content_image">
                 <a href="#header" class="popup_close close-popup">❌</a>
-                
-<div class="popup_image">
-  <div class="loader"></div>
-  <img src="img/popupWindow.JPG" onload="this.previousElementSibling.style.display='none'" alt="">
-</div>
-
+                <div class="popup_image">
+                    <div class="loader"></div>
+                    <img src="img/popupWindow.JPG" onload="this.previousElementSibling.style.display='none'" alt="">
+                </div>
             </div>
         </div>
     </div>
     <!-- --------------- -->
     </div>
 </div>
-    <script src="scripts/script.js"></script>
 
-<script>
-  const preloadImg = new Image();
-  preloadImg.src = "img/popupWindow.JPG";
-</script>
-
+    <script>
+    const preloadImg = new Image();
+    preloadImg.src = "img/popupWindow.JPG";
+    </script>
+    <noscript>
+        <style>
+            body{
+                visibility: visible;
+            }
+        </style>
+    </noscript>
 </body>
 </html>
