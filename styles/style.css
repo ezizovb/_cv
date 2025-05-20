@@ -3,12 +3,21 @@ body {
     margin: 0;
     padding: 0;
     transition: background 0.3s ease, color 0.3s ease;
+    /* background-color: #eef0eb; */
 }
 body.scroll-lock{
     overflow: hidden;
 }
+.light-theme{
+    background: #eef0eb;
+}
+.light-theme .wrapper{
+    background: white;
+}
+
 /* ---------- Header ---------- */
 .header {
+    border: none;
     text-align: center;
     padding: 15px;
     background: #eef0eb;
@@ -20,21 +29,18 @@ body.scroll-lock{
     justify-content: space-around;
     align-items: center;
 }
-
 .header_block_logo img{
     width: 70px;
     height: 70px;
     border-radius: 50%;
     border: 2.2px dotted blue;
 }
-
 #img1{
     border: 2.2px solid #84dd63;
 }
 #img1.visited {
     border: 2.2px solid #09814a;
 }
-
 .header_block_langs{
     position: absolute;
     bottom: 0;
@@ -54,7 +60,6 @@ body.scroll-lock{
     position: relative;
     display: inline-block;
 }
-
 .icon {
     cursor: pointer;
     background: #eef0eb;
@@ -167,13 +172,11 @@ body.lock{
     transform: translateY(50px);
     transition: all 0.6s ease-out;
   }
-  
   .hidden-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
   }
 /* ---------- Sections ---------- */
-
 section {
     padding: 20px;
     margin: 20px auto;
@@ -183,7 +186,6 @@ section {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
-
  /* section{
     height: 100vh;
     display: flex;
@@ -241,7 +243,7 @@ section.visible {
     } */
 /* ---------- projects ---------- */
 .project-card {
-    background: eef0eb;
+    background: #eef0eb;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 10px 20px;
@@ -275,6 +277,12 @@ section.visible {
     height: 17px;
     margin-right: 5px;
   }
+  .processing{
+    background: url(../img/config.svg) no-repeat;
+    background-position: right;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
 /* ---------- Footer ---------- */
 footer {
     padding: 10px;
@@ -334,8 +342,11 @@ input {
 }
 /* ---------- dark ---------- */
 .dark-theme {
-    background: #0c1821;
+    background: #0b0e14;
     color: wheat;
+}
+.dark-theme .wrapper{
+    background: #0f1520;
 }
 .dark-theme header{
     background: #0b0e14;
@@ -344,7 +355,6 @@ input {
 .dark-theme section{
     background: #0b0e14;
     box-shadow: 0 0 10px rgba(250,250,250,0.1);
-
 }
 .dark-theme .icon{
     background-color: #0b0e14;
@@ -362,7 +372,7 @@ input {
 } */
 .dark-theme .project-card {
     background: #0b0e14;
-    box-shadow: 0 0 10px rgba(249,110,70,0.2);
+    box-shadow: 0 0 10px rgba(70, 112, 249, 0.2);
 }
 .dark-theme .project-card a {
     color: white;
@@ -375,6 +385,13 @@ input {
     color: #eef0eb;
     background: #0b0e14;
 }
+.dark-theme .processing{
+    font-weight: lighter;
+    color: antiquewhite;
+    background: url(../img/config_dark.svg) no-repeat;
+    background-position: right;
+    box-shadow: 0 0 10px rgba(139, 9, 168, 0.1);
+  }
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
     .dropdown-content {
