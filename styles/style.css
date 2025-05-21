@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     transition: background 0.3s ease, color 0.3s ease;
-    /* background-color: #eef0eb; */
+    background-color: #eef0eb;
 }
 body.scroll-lock{
     overflow: hidden;
@@ -11,11 +11,11 @@ body.scroll-lock{
 .light-theme{
     background: #eef0eb;
 }
-.light-theme .wrapper{
+.wrapper{
     background: white;
 }
-
 /* ---------- Header ---------- */
+
 .header {
     border: none;
     text-align: center;
@@ -153,7 +153,7 @@ body.lock{
     max-height: 80%;
     vertical-align: top;
     border-radius: 18px;
-    border: 1px solid gray;
+    border: 1px solid #09814a;
 }
 .popup_close {  
     position: absolute;
