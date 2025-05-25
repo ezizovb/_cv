@@ -212,8 +212,8 @@ function popupClose(popupActive, doUnlock = true) {
 //   hiddenElements.forEach((el) => {
 //     const rect = el.getBoundingClientRect();
 //     if (rect.top < window.innerHeight - 100) {
-//       el.classList.add("show");
-//       //   animateSkills();
+//       el.classList.add("visible");
+//       animateSkills();
 //     }
 //   });
 // }
