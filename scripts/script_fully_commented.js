@@ -1,7 +1,7 @@
-
 // ===================== script.js с гиперподробными комментариями =====================
 // Этот скрипт отвечает за: смену языка, тёмную тему, popup-окна и анимации при скролле.
 // Всё завёрнуто в блок, который ждёт полной загрузки DOM (HTML-документа)
+var backrForCanvas;
 
 document.addEventListener("DOMContentLoaded", () => {
   // ===================== Переменные для меню языка =====================
@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===================== Функция для переключения меню =====================
   // Срабатывает при клике на dropdown (если экран маленький, как на телефоне)
   function toggleMenu(event) {
-    if (window.innerWidth <= 768) { // Только для мобильных устройств
+    if (window.innerWidth <= 768) {
+      // Только для мобильных устройств
       event.stopPropagation(); // Останавливаем всплытие, чтобы меню не закрылось сразу
       isMenuOpen = !isMenuOpen; // Меняем значение флага на противоположное
       // Показываем или скрываем меню в зависимости от текущего состояния
@@ -28,7 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===================== Функция для закрытия меню =====================
   function closeMenu() {
-    if (window.innerWidth <= 768 && isMenuOpen) { // Только на мобилках и если меню открыто
+    if (window.innerWidth <= 768 && isMenuOpen) {
+      // Только на мобилках и если меню открыто
       isMenuOpen = false;
       menu.style.display = "none"; // Прячем меню
     }
@@ -78,10 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Приветствия для всех языков и времён суток
     const greetings = {
       langEn: [
-        "Good night, I'm Eziz",    // 00:00–05:59
-        "Good morning, I'm Eziz",  // 06:00–11:59
-        "Good afternoon, I'm Eziz",// 12:00–17:59
-        "Good evening, I'm Eziz",  // 18:00–23:59
+        "Good night, I'm Eziz", // 00:00–05:59
+        "Good morning, I'm Eziz", // 06:00–11:59
+        "Good afternoon, I'm Eziz", // 12:00–17:59
+        "Good evening, I'm Eziz", // 18:00–23:59
       ],
       langRu: [
         "Доброй ночи, я Eziz",
@@ -109,16 +111,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("greeting").innerText = greeting;
   }
 
-
   // ===================== Темная тема =====================
+
   const toggle = document.getElementById("theme-toggle");
   const body = document.body;
 
   // Если тема была сохранена как "dark", сразу применяем её при загрузке
-  if (localStorage.getItem("theme") === "dark") {
-    body.classList.add("dark-theme");
-    toggle.checked = true;
-  }
+  //   if (localStorage.getItem("theme") === "dark") {
+  backrForCanvas = "rgba(0, 0, 0, 0.2)";
+  body.classList.add("dark-theme");
+  toggle.checked = true;
+  //   }
 
   // Слушаем переключение темы пользователем
   toggle.addEventListener("change", () => {
@@ -127,11 +130,13 @@ document.addEventListener("DOMContentLoaded", () => {
       body.classList.add("dark-theme");
       body.classList.remove("light-theme");
       localStorage.setItem("theme", "dark");
+      backrForCanvas = "rgba(0, 0, 0, 0.2)";
     } else {
       // Включаем светлую тему
       body.classList.add("light-theme");
       body.classList.remove("dark-theme");
       localStorage.setItem("theme", "light");
+      backrForCanvas = "rgba(255, 255, 255, 0.2)";
     }
   });
 }); // Закрываем DOMContentLoaded
@@ -274,3 +279,123 @@ img.parentElement.addEventListener("click", () => {
   img.classList.add("visited");
   localStorage.setItem("img1_visited", "true");
 });
+
+/*===========================================================================*/
+
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
+
+// Устанавливаем размеры canvas равными размерам окна браузера
+// const fullHeight = Math.max(
+//   document.body.scrollHeight,
+//   document.documentElement.scrollHeight
+// );
+//   console.log(fullHeight);
+
+// const fullWidth = Math.max(
+//   document.body.scrollWidth,
+//   document.documentElement.scrollWidth
+// );
+//   console.log(fullWidth);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// canvas.width = fullWidth;
+// canvas.height = fullHeight;
+
+// При изменении размеров окна изменяем размеры canvas и пересоздаём частицы
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  initParticles();
+});
+
+const particles = [];
+const particleCount = 50; // можно изменить для увеличения/уменьшения количества точек
+
+class Particle {
+  constructor() {
+    this.init();
+  }
+
+  init() {
+    // Случайная позиция по всему canvas
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    // Радиус точки (будем использовать его для создания эффекта свечения)
+    this.radius = Math.random() * 0.2 + 0.1; // от 1 до 3 пикселей
+    // Случайная скорость и направление
+    this.speedX = (Math.random() - 0.5) * 1.5;
+    this.speedY = (Math.random() - 0.5) * 1.5;
+    // Можно добавить эффект мерцания, задавая начальное значение прозрачности
+    this.alpha = Math.random() * 0.5 + 0.5; // от 0.5 до 1
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // Обеспечиваем появление с противоположной стороны при выходе за границы
+    if (this.x < 0) this.x = canvas.width;
+    else if (this.x > canvas.width) this.x = 0;
+    if (this.y < 0) this.y = canvas.height;
+    else if (this.y > canvas.height) this.y = 0;
+  }
+
+  draw() {
+    ctx.save();
+    ctx.globalAlpha = this.alpha;
+    // Создаем радиальный градиент для эффекта свечения
+    const grad = ctx.createRadialGradient(
+      this.x,
+      this.y,
+      0,
+      this.x,
+      this.y,
+      this.radius * 4
+    );
+    grad.addColorStop(1, "rgba(0, 247, 0, 0.906)"); // яркий центр
+    grad.addColorStop(0, "black"); // плавное затухание к прозрачности
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius * 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+// Функция инициализации массива частиц
+function initParticles() {
+  particles.length = 0;
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+}
+
+initParticles();
+// Функция анимации с использованием requestAnimationFrame
+function animate() {
+  // Создаем эффект затухания: слегка затемняем предыдущий кадр для плавного следа движения
+  ctx.fillStyle = backrForCanvas;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((particle) => {
+    particle.update();
+    particle.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+const feedbackClick = document.querySelector(".feedback");
+// console.log(feedbackClick);
+feedbackClick.addEventListener("click", scrollDown);
+function scrollDown() {
+  window.scrollTo({
+    bottom: 1,
+    left: 0,
+    behavior: "smooth",
+  });
+}
