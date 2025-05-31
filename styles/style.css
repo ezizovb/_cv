@@ -1,3 +1,4 @@
+
 body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
@@ -5,41 +6,57 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
     background-color: #eef0eb;
 }
+*{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  *::-webkit-scrollbar{
+    display: none;
+  }
 body.scroll-lock{
     overflow: hidden;
 }
 .light-theme{
-    background: #eef0eb;
+    background: rgba(255, 255, 255, 0.8);
 }
 .wrapper{
-    background: white;
+    background: rgba(255, 255, 255, 0.8);
 }
+
 /* ---------- Header ---------- */
 
 .header {
     border: none;
     text-align: center;
     padding: 15px;
-    background: #eef0eb;
-    color: #0b0e14;
-    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    color: #23368c;
     border-bottom-right-radius: 70px;
     border-bottom-left-radius: 70px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: relative;
+    z-index: 4;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
 }
+
 .header_block_logo img{
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: 2.2px dotted blue;
+    box-shadow: -3px 3px 10px rgba(1, 255, 128, 0.241);
+}
+
+.cv{
+    color: rgba(0, 247, 0, 0.906);
 }
 #img1{
-    border: 2.2px solid #84dd63;
+    border: 2.2px solid rgba(0, 247, 0, 0.906);
 }
 #img1.visited {
-    border: 2.2px solid #09814a;
+    border: 2.2px solid rgba(35, 203, 35, 0.3);
 }
 .header_block_langs{
     position: absolute;
@@ -53,7 +70,7 @@ body.scroll-lock{
 .icon {
     cursor: pointer;
     font-size: 24px;
-    background: #eef0eb;
+    background: rgba(255, 255, 255, 0.8);
     border: none;
 }
 .dropdown {
@@ -62,13 +79,13 @@ body.scroll-lock{
 }
 .icon {
     cursor: pointer;
-    background: #eef0eb;
+    background: rgba(255, 255, 255, 0.8);
     border: none;
 }
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #eef0eb;
+    background-color: rgba(255, 255, 255, 0.5);
     min-width: auto;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     border-bottom-left-radius: 5px;
@@ -107,7 +124,7 @@ body.lock{
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.6);
     top: 0px;
     left: 0;
     opacity: 0;
@@ -116,6 +133,7 @@ body.lock{
     overflow-x: hidden;
     transition: all 0.8s ease 0s;
     padding: 0px 0px;
+    z-index: 9;
 }
 .popup.open {
     opacity: 1;
@@ -176,15 +194,17 @@ body.lock{
     opacity: 1;
     transform: translateY(0);
   }
-/* ---------- Sections ---------- */
+/* ---------- Sections ---------- */
 section {
     padding: 20px;
     margin: 20px auto;
     width: 80%;
     max-width: 700px;
-    background: #eef0eb;
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 3;
 }
  /* section{
     height: 100vh;
@@ -203,6 +223,12 @@ section.visible {
 .sections{
     padding: 50px;
 } */
+
+.feedback{
+    font-size: small;
+    color: #0077ff;
+}
+
 /* ---------- scills ---------- */
 .skill {
     margin: 15px 0;
@@ -243,7 +269,7 @@ section.visible {
     } */
 /* ---------- projects ---------- */
 .project-card {
-    background: #eef0eb;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 10px 20px;
@@ -286,11 +312,17 @@ section.visible {
 /* ---------- Footer ---------- */
 footer {
     padding: 10px;
-    background: #eef0eb;
+    background: rgba(255, 255, 255, 0.8);
     color: #0b0e14;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 3;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: none;
+    border-top-right-radius: 70px;
+    border-top-left-radius: 70px;
 }
 .contacts_icon{
     width: 40px;
@@ -349,18 +381,19 @@ input {
     background: #0f1520;
 }
 .dark-theme header{
-    background: #0b0e14;
-    color: wheat;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: rgb(216, 141, 22);
 }
 .dark-theme section{
-    background: #0b0e14;
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 10px rgba(250,250,250,0.1);
 }
 .dark-theme .icon{
-    background-color: #0b0e14;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .dark-theme .dropdown-content {
-    background-color: #0b0e14;
+    background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid black;
 }
 .dark-theme .bar {
@@ -371,7 +404,7 @@ input {
     color: wheat;
 } */
 .dark-theme .project-card {
-    background: #0b0e14;
+    background: rgba(0, 0, 0, 0.7);
     box-shadow: 0 0 10px rgba(70, 112, 249, 0.2);
 }
 .dark-theme .project-card a {
@@ -383,14 +416,14 @@ input {
 }
 .dark-theme footer {
     color: #eef0eb;
-    background: #0b0e14;
+    background: rgba(0, 0, 0, 0.7);
 }
 .dark-theme .processing{
     font-weight: lighter;
     color: antiquewhite;
     background: url(../img/config_dark.svg) no-repeat;
     background-position: right;
-    box-shadow: 0 0 10px rgba(139, 9, 168, 0.1);
+    box-shadow: 0 0 10px rgba(200, 9, 9, 0.1);
   }
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
@@ -437,4 +470,13 @@ input {
         width: 20px;
         height: 20px;
     }
+}
+
+
+.design{
+    color: darkgreen;
+    position: absolute;
+    bottom: 1px;
+    right: 10px;
+    font-size: 0.5rem;
 }
