@@ -24,15 +24,25 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
     }
+    canvas {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+    }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded',function(){
         document.body.style.visibility="visible"
     })
 </script>
-<script src="scripts/script.js" defer></script>
+<script src="scripts/script_fully_commented.js" defer></script>
 </head>
 <body>
+    <canvas id="particleCanvas"></canvas>
 <div class="container">
     <div class="wrapper">
 <!-- -------------- Header -------------- -->
@@ -41,6 +51,7 @@
             <div class="header_block_logo">
                 <!-- ----------- -->
                 <a href="#image" class="content_image popup-link">
+                    <div class="spinner"></div>
                     <img id="img1" class="img_code popup-link" src="img/logo.png" alt="">
                 </a>
                 <!-- ----------- -->
@@ -88,9 +99,9 @@
                         <span style="font-weight: bold;"> ~2013:</span> Köne Samsung-da ilkinji saýtym
                     </p>
                     |
-                    <p class="langRu" style="font-size: 1vh;">тут армия и прочие вмешательтв жизни</p>
-                    <p class="langEn" style="font-size: 1vh;">here, the army and other interference in life.</p>
-                    <p class="langTm" style="font-size: 1vh;">bu ýerde goşun we beýleki goşmaça pasgelçilikler bar.</p>
+                    <p class="langRu" style="font-size: 1.2vh;">тут армия и прочие вмешательтв жизни</p>
+                    <p class="langEn" style="font-size: 1.2vh;">here, the army and other interference in life.</p>
+                    <p class="langTm" style="font-size: 1.2vh;">bu ýerde goşun gullugy we beýleki goşmaça pasgelçilikler bar.</p>
                     |
                     <p  class="langRu" title="в качестве первого языка програмирования я выбрал C++">
                         <span style="font-weight: bold;">2019:</span> Понял, что C++ — это боль.
@@ -143,6 +154,15 @@
                         Çalt öwrenýän, uýgunlaşýan we täze wezipelere taýýar adam.
                         <br>Programmirleme etmeýän wagtymda kody nähili has gowulaşdyryp boljakdygyny pikir edýärin.
                         <br>Kynçylyklary gowy gorýan (dine kodda däl😎)
+                    </p>
+                    <p class="langRu">Дальше — практика, практика...
+                        <br>Буду рад вашим предложениям и мнениям о сайте! 
+                    </p>
+                    <p class="langEn">Next comes practice, practice...
+                        <br>I’ll be glad to hear your suggestions and opinions about the site! 
+                    </p>
+                    <p class="langTm">Indiki ädim tejribe, tejribe...
+                        <br>Saýt boýunça teklipleriňizi we pikirleriňizi bilmek begendirer! 
                     </p>
                 </div>
             </div>
@@ -259,8 +279,10 @@
                 <a href="https://github.com/ezizovb">
                     <img class="contacts_icon" src="img/github_logo.png" alt="">
                 </a>
+        <div class="design">design: k41</div>
+
         </footer>
-        <!-- ---------- -->
+<!-- ---------- PopupWindow ---------- -->
     <div id="image" class="popup">
         <div class="popup_body">
             <div class="popup_content popup_content_image">
@@ -272,7 +294,6 @@
             </div>
         </div>
     </div>
-    <!-- --------------- -->
     </div>
 </div>
     <script>
